@@ -50,7 +50,13 @@ public class Estacion implements Comparable<Estacion>{
 
     @Override
     public int compareTo(Estacion o) {
-        return this.compareTo(o);
+        if (this.hashCode() > o.hashCode()) {
+            return 1;
+        }
+        else if (o.hashCode() > this.hashCode()) {
+            return -1;
+        }
+        return 0;
     }
 
     @Override

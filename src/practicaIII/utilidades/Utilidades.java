@@ -6,6 +6,8 @@ import practicaIII.dominio.Tramo;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utilidades {
 
@@ -27,15 +29,15 @@ public class Utilidades {
         return tramo;
     }
 
-    public static ArbolAVL construirGrafoAVLRutas() {
-        ArbolAVL arbolAVL = new ArbolAVL();
+    public static List<Tramo> leerArchivoRutas() {
+        List<Tramo> listaTramos = new ArrayList<>();
         File muestras = new File("mapa-estaciones.txt");
         BufferedReader bf = null;
         try {
             bf = new BufferedReader(new FileReader(muestras));
             String linea = bf.readLine();
             while (linea != null) {
-                arbolAVL.insertarDato(construirTramo(linea));
+                listaTramos.add(construirTramo(linea));
                 linea = bf.readLine();
             }
         } catch (FileNotFoundException e1) {
@@ -49,8 +51,10 @@ public class Utilidades {
                 e3.printStackTrace(System.out);
             }
         }
-        return arbolAVL;
+        return listaTramos;
     }
+
+
 
     public static Integer ingresarEstacionGas(String titulo){
         Integer numEstacion = null;

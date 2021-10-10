@@ -4,25 +4,25 @@ import java.util.Objects;
 
 public class Tramo implements Comparable<Tramo> {
 
-    private Estacion estacion1;
+    private Estacion estacionA;
     private Integer tiempoEsparcionGas;
-    private Estacion estacion2;
+    private Estacion estacionB;
 
     public Tramo() {
     }
 
-    public Tramo(Estacion estacion1, int tiempoEsparcionGas, Estacion estacion2) {
-        this.estacion1 = estacion1;
+    public Tramo(Estacion estacionA, int tiempoEsparcionGas, Estacion estacionB) {
+        this.estacionA = estacionA;
         this.tiempoEsparcionGas = tiempoEsparcionGas;
-        this.estacion2 = estacion2;
+        this.estacionB = estacionB;
     }
 
-    public Estacion getEstacion1() {
-        return this.estacion1;
+    public Estacion getEstacionA() {
+        return this.estacionA;
     }
 
-    public void setEstacion1(Estacion estacion1) {
-        this.estacion1 = estacion1;
+    public void setEstacionA(Estacion estacionA) {
+        this.estacionA = estacionA;
     }
 
     public Integer getTiempoEsparcionGas() {
@@ -33,12 +33,12 @@ public class Tramo implements Comparable<Tramo> {
         this.tiempoEsparcionGas = tiempoEsparcionGas;
     }
 
-    public Estacion getEstacion2() {
-        return this.estacion2;
+    public Estacion getEstacionB() {
+        return this.estacionB;
     }
 
-    public void setEstacion2(Estacion estacion2) {
-        this.estacion2 = estacion2;
+    public void setEstacionB(Estacion estacionB) {
+        this.estacionB = estacionB;
     }
 
     @Override
@@ -46,25 +46,31 @@ public class Tramo implements Comparable<Tramo> {
         if (this == o) return true;
         if (!(o instanceof Tramo)) return false;
         Tramo tramo = (Tramo) o;
-        return getTiempoEsparcionGas() == tramo.getTiempoEsparcionGas() && getEstacion1().equals(tramo.getEstacion1()) && getEstacion2().equals(tramo.getEstacion2());
+        return getTiempoEsparcionGas() == tramo.getTiempoEsparcionGas() && getEstacionA().equals(tramo.getEstacionA()) && getEstacionB().equals(tramo.getEstacionB());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEstacion1(), getTiempoEsparcionGas(), getEstacion2());
+        return Objects.hash(getEstacionA(), getTiempoEsparcionGas(), getEstacionB());
     }
 
     @Override
     public int compareTo(Tramo o) {
-        return this.compareTo(o);
+        if (this.hashCode() > o.hashCode()) {
+            return 1;
+        }
+        else if (o.hashCode() > this.hashCode()) {
+            return -1;
+        }
+        return 0;
     }
 
     @Override
     public String toString() {
         return "Tramo {" +
-                "estacion: " + this.estacion1 +
+                "estacion: " + this.estacionA +
                 ", tiempoEsparcionGas: " + this.tiempoEsparcionGas +
-                ", estacion: " + this.estacion2 +
+                ", estacion: " + this.estacionB +
                 '}';
     }
 }
